@@ -1,4 +1,4 @@
-FROM tobix/wine:stable
+FROM docker.io/tobix/wine:stable
 
 ARG USERNAME=runner
 ARG USER_UID=1001
@@ -17,6 +17,10 @@ unzip /src/cv2pdb-0.54.zip -d /home/runner
 EOF
 
 USER $USERNAME
+
+ENV WINEDEBUG=-all
+
+RUN winecfg /h 2>/dev/null
 
 WORKDIR /work
 
